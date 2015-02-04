@@ -1,0 +1,12 @@
+#+STARTUP: content
+#+TITLE: justQuiz Develop Plan
+#+AUTHOR: VOID001
+
+* TODO STEP1 简易答题&判题(客观题)的实现
+* TODO STEP2 支持题目上传附件
+* TODO STEP3 支持用户注册，登录
+* TODO STEP4 支持显示该套卷的分数分布
+* TODO STEP5 人工批改功能的添加
+* TODO STEP6 加入不同的答题模式
+* TODO STEP7 UI优化 jQuery Bootstrap优化UI
+* TODO STEP... 其它功能的添加
