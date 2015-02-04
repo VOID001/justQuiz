@@ -4,6 +4,20 @@
 
 * TODO STEP1 简易答题&判题(客观题)的实现
 ** TODO A 题目管理
+本阶段要实现题目管理的基本功能 及试题录入以及试卷生成
+所有试题初期决定为存入同一个数据库，每一道试题包含的数据域有
+- PID 题目ID
+- title 题目标题
+- body 题目内容
+- attachment 附件路径 **为以后使用**
+- isObjective 题目是否为选择题
+- isMulti 题目为单选or多选
+- item_1 item_2 item_3 item_4 item_5 item_6 item_7 选项内容
+- answer 正确答案 (正确答案支持三种格式 1.单选答案 2.多选答案(可以用XML可以用字符串)3.主观题答案(
+支持关键字匹配，全部匹配为正确，部分匹配的情况没有考虑 初期只开发单选)
+- correctNum 答对的次数
+- wrongNum 答错的次数
+
 *** TODO Func1-添加题目到题库
 *** TODO Func2-用题库的题目组成试卷
 ** TODO B 答题功能
