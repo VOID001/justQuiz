@@ -22,7 +22,8 @@
 每一张试卷的数据域有
 - EID 试卷的ID
 - items 题目ID组成的字串
-- rankAnum rankBnum rankCnum rankDnum
+- rankAnum rankBnum rankCnum rankDnum 各分段学生数量统计
+- TimingInfo 暂时不明确如何存储时限信息，也许用xml STEP1不考虑
 *** TODO Func1-添加题目到题库
 *** TODO Func2-用题库的题目组成试卷
 ** TODO B 答题功能
