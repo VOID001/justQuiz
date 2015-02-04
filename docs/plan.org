@@ -3,6 +3,12 @@
 #+AUTHOR: VOID001
 
 * TODO STEP1 简易答题&判题(客观题)的实现
+** TODO A 题目管理
+*** TODO Func1-添加题目到题库
+*** TODO Func2-用题库的题目组成试卷
+** TODO B 答题功能
+*** TODO Func3-抓取特定试卷的题目显示到答题区
+*** TODO Func4-判题功能
 * TODO STEP2 支持题目上传附件
 * TODO STEP3 支持用户注册，登录
 * TODO STEP4 支持显示该套卷的分数分布
