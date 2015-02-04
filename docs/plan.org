@@ -9,7 +9,7 @@
 - PID 题目ID
 - title 题目标题
 - body 题目内容
-- attachment 附件路径 **为以后使用**
+- attachment 附件路径 *为以后使用*
 - isObjective 题目是否为选择题
 - isMulti 题目为单选or多选
 - item_1 item_2 item_3 item_4 item_5 item_6 item_7 选项内容
