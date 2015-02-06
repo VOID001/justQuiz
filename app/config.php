@@ -9,7 +9,7 @@
  */
 $db_host="localhost";
 $db_port="2333";
-$db_username="justQuiz";
+$db_user="justQuiz";
 $db_password="quizByNEUP-NET";
 $db_name="justQuiz";
 
