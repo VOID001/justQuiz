@@ -2,8 +2,8 @@
 #+TITLE: justQuiz Develop Plan
 #+AUTHOR: VOID001
 
-* TODO STEP1 简易答题&判题(客观题)的实现
-** TODO A 题目管理
+* WORKING STEP1 简易答题&判题(客观题)的实现
+** WORKING A 题目管理
 本阶段要实现题目管理的基本功能 及试题录入以及试卷生成
 所有试题初期决定为存入同一个数据表，每一道试题包含的数据域有
 - PID 题目ID
@@ -24,10 +24,23 @@
 - items 题目ID组成的字串
 - rankAnum rankBnum rankCnum rankDnum 各分段学生数量统计
 - TimingInfo 暂时不明确如何存储时限信息，也许用xml STEP1不考虑
-*** TODO Func1-添加题目到题库
+   
+*** TESTING Func1-添加题目到题库
+
+**** TESTING 建立PItemclass类的数据库写入和从POST读入功能
+定义一个PItemclass类,这个类封装一道试题的所有信息以及对试题进行的操作
 *** TODO Func2-用题库的题目组成试卷
-** TODO B 答题功能
-*** TODO Func3-抓取特定试卷的题目显示到答题区
+*** DONE 系统初始化的实现
+    CLOSED: [2015-02-06 五 20:04]
+暂时搁置这个功能 先采取在数据库内预先生成一套试卷的功能来测试答题判题功能是否工作正常
+** WORKING B 答题功能
+*** WORKING Func3-抓取特定试卷的题目显示到答题区
+为实现本功能,将设计一个Examclass类来对试卷进行操作
+examclass类内存有用户的答案和一个PItemclass类数组,并且具有判断题目是否正确的函数
+为了保证用户只通过这一个页面就能够访问所有的题目,使用PHPSESSION对其进行管理,Examclass类
+内含有显示试题这一函数,因而可以直接使用此函数调取相应的题目
+**** TODO 设计Examclass类 完成上述功能
+**** TODO 使用session完成题目在同一页面上显示不同题目,以及对试卷的整体判题
 *** TODO Func4-判题功能
 * TODO STEP2 支持题目上传附件
 * TODO STEP3 支持用户注册，登录
