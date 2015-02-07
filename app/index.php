@@ -4,6 +4,7 @@
  * Description: Load config files and
  * present the welcome page
  */
-require_once ("config.php");
-require_once ("welcome.php");
+session_start();
+require_once (dirname(__FILE__)."/config.php");
+require_once (dirname(__FILE__)."/welcome.php");
 
