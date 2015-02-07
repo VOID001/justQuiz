@@ -42,7 +42,8 @@ examclass类内存有用户的答案和一个PItemclass类数组,并且具有判
 内含有显示试题这一函数,因而可以直接使用此函数调取相应的题目
 **** DONE 设计Examclass类 完成上述功能
      CLOSED: [2015-02-07 六 13:30]
-*****设计Examclass类的同时需要对quiz.php的逻辑进行梳理
+***** DONE 设计Examclass类的同时需要对quiz.php的逻辑进行梳理
+      CLOSED: [2015-02-07 六 15:59]
 **** DONE 扩展PItemclass类的功能,使其支持根据题目ID加载题目
      CLOSED: [2015-02-07 六 13:30]
 ***** DONE 解决中文乱码问题
