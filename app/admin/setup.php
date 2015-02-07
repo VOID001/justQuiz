@@ -9,15 +9,15 @@
  */
 if(!isset($_GET['action']) || $_GET['action']!="install")
 {
-	require_once("../html/setup_ui.html");
-	require_once("../html/setup_btn.html");
+	require_once(dirname(__FILE__)."/../html/setup_ui.html");
+	require_once(dirname(__FILE__)."/../html/setup_btn.html");
 	exit();
 }
 else
 {
-	require_once("../html/setup_ui.html");
+	require_once(dirname(__FILE__)."/../html/setup_ui.html");
 	echo "<h3>安装中，请稍后...</h3>";
-	require_once("../config.php");
+	require_once(dirname(__FILE__)."/../config.php");
 	//sqlConnection
 	$sqlconn=mysql_connect($db_host.":".$db_port,$db_user,$db_password);
 	if(!mysql_error()) echo"<h4>数据服务器连接完成</h4>";
@@ -25,7 +25,7 @@ else
 	if(!mysql_error()) echo"<h4>数据库连接完成</h4>";
 	//Start to Create Tables
 	$SQLQUERY="CREATE TABLE testitems(PID INTEGER ,title MEDIUMTEXT,body MEDIUMTEXT,
-		attachment MEDIUMTEXT,isObjectve BOOL,isMulti BOOL,choiceNum INTEGER,
+		attachment MEDIUMTEXT,isObjective BOOL,isMulti BOOL,choiceNum INTEGER,
 		item_1 VARCHAR(225),item_2 VARCHAR(225),item_3 VARCHAR(225),item_4 VARCHAR(225),item_5 VARCHAR(225),
 		item_6 VARCHAR(225),item_7 VARCHAR(225),answer MEDIUMTEXT,correctNum MEDIUMINT,wrongNum
 		MEDIUMINT)";
@@ -75,7 +75,7 @@ else
 				$data = hash("md5", time() . $seed);
 				echo $data;
 				file_put_contents($confFile, $data);
-				require_once("../html/setup_finish.html");
+				require_once(dirname(__FILE__)."/../html/setup_finish.html");
 			}
 		}
 	}
