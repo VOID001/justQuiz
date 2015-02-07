@@ -8,12 +8,55 @@
  * File: quiz.php
  * Description:
  */
-
-session_start();//start the php session
-if(!isset($_GET['eid']))//No Test Specified
+require_once(dirname(__FILE__)."/class/examclass.php");
+session_start();
+if($_SERVER['REQUEST_METHOD']=="GET")
 {
-	require_once('html/quiz_form.html');            //Show find quiz dialog
-	exit();
+	//Show the Exam Selection Form
+	require_once(dirname(__FILE__) . '/html/quiz_form.html');            //Show find quiz dialog
 }
-$_SESSION['examid']=$_GET['eid'];
+else
+{
+	if(!empty($_SESSION['curExam']))               //User has already in exam
+	{
+		if(!empty($_POST['answered']))
+		{
+			if($_SESSION['curExam']->examProblemNum==$_SESSION['curID']+1)
+			{
+				$_SESSION['curExam']->useranswer($_SESSION['curID'],$_POST['usersel']);
+				$_SESSION['curExam']->show_exam_result();
+				unset($_SESSION['curExam']);
+			}
+			else
+			{
+				$_SESSION['curExam']->useranswer($_SESSION['curID'],$_POST['usersel']);
+				$_SESSION['curID']++;
+				$_SESSION['curExam']->show_problem($_SESSION['curID']);
+			}
+		}
+		else
+		{
+			$_SESSION['curExam']->show_problem($_SESSION['curID']);
+		}
+	}
+	else                                            //User should select paper
+	{
+		if(empty($_POST['eid']))
+		{
+			require_once(dirname(__FILE__) . '/html/quiz_form.html');            //Show find quiz dialog
+		}
+		else                                        //User has already choose an exam
+		{
+			$_SESSION['examid']=$_POST['eid'];
+
+			$_SESSION['curExam']=new Examclass();
+			$_SESSION['curID']=0;
+			$_SESSION['curExam']->load_exam($_SESSION['examid']);
+			$_SESSION['curExam']->show_problem($_SESSION['curID']);
+		}
+	}
+}
+//require_once("html/quiz_header.php");
+//require_once("html/quiz_body.php");
+//require_once("html/quiz_footer.php");
 
