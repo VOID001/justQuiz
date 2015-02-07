@@ -16,7 +16,7 @@
 	</head>
 	<body>
 		<div style='margin: auto;font-family:KaiTi, "楷体", sans-serif;text-align: center;font-size:40px'>
-			justQuiz!一个测评和考试的App
+			justQuiz!测评考试系统
 		</div>
 		<table style="margin:auto;">
 			<th></th>
@@ -40,5 +40,8 @@
 				!-->
 			</tr>
 		</table>
+		<div style="">
+			<a href="admin/additem.php">Admin Access</a>
+		</div>
 	</body>
 </html>
