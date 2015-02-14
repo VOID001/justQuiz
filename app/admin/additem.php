@@ -10,11 +10,7 @@
  * File: additem.php
  */
 require_once(dirname(__FILE__)."/../class/pitemclass.php");
-if(is_readable("load_conf")==false)
-{
-	require_once(dirname(__FILE__)."/setup.php");          //First Time to Run
-	exit();
-}
+
 if(isset($_POST['addItem']))
 {
 	//if(check_post()) exit();
