@@ -12,5 +12,6 @@ $db_port="2333";
 $db_user="justQuiz";
 $db_password="quizByNEUP-NET";
 $db_name="justQuiz";
+$salt="justQuizSaltToken";
 
 $developer="VOID001";
