@@ -41,7 +41,7 @@
 			</tr>
 		</table>
 		<div style="">
-			<a href="admin/additem.php">Admin Access</a>
+			<a href="admin/index.php">Admin Access</a>
 		</div>
 	</body>
 </html>
