@@ -6,6 +6,7 @@
  * Date: 15-2-14
  * Time: 下午10:40
  */
+$pos="admin";
 require_once(dirname(__FILE__)."/../config.php");
 $sqlconn=mysql_connect($db_host.":".$db_port,$db_user,$db_password);
 mysql_select_db($db_name);

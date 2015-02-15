@@ -19,8 +19,8 @@ $pos="home";
 <?php require_once(dirname(__FILE__)."/html/navbar_top.php");?>
 
 
-<div class="container">
-	<div class="page-header text-center">
+<div class="container-fluid jumbotron">
+	<div class="jumbotron text-center">
 		<h1 class="title">justQuiz!测评考试系统</h1>
 	</div>
 	<div class="row" align="center">
