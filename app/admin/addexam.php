@@ -86,7 +86,6 @@ else if(isset($_POST) && $_POST['create']=="true")               //Create a Pape
 	<html>
 	<head lang="en">
 		<title>添加试卷</title>
-		<meta charset="utf-8"/>
 		<?php require_once(dirname(__FILE__)."/../html/header.php");?>
 	</head>
 	<body>
@@ -115,11 +114,15 @@ else if(isset($_POST) && $_POST['create']=="true")               //Create a Pape
 		<div class="form-group">
 			<div class="alert alert-info">选好试题后 请为试卷命名</div>
 			<form method="post" action=<?php echo$_SERVER['PHP_SELF']; ?>>
-				<div class="input-group">
-					<input  class="form-control" type="text" id="examid" name="examid"/>
-					<input class="btn btn-success" type="submit" value="生成试卷"/>
-					<input type="hidden" id="create" name="create" value="true"/>
-				</div>
+				<table class="table">
+					<tr>
+						<div class="input-group">
+							<td class="col-md-4"><input  class="form-control" type="text" id="examid" name="examid" placeholder="输入试卷名"/></td>
+							<td><input class="btn btn-success" type="submit" value="生成试卷"/></td>
+							<input type="hidden" id="create" name="create" value="true"/>
+						</div>
+					</tr>
+				</table>
 			</form>
 			<?php echo $msgStr;?>
 		</div>

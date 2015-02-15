@@ -18,13 +18,15 @@ mysql_close();
 <html>
 <head>
 	<title><?php echo "试题显示--".$prob['title'];?></title>
+	<?php require_once(dirname(__FILE__)."/../html/header.php");?>
 </head>
 <body>
-	<div>
-		<div style="font-size:30px">
-			&nbsp;&nbsp;&nbsp;<?php echo $prob['title'];?>
+<?php require_once(dirname(__FILE__)."/../html/navbar_top.php");?>
+	<div class="container well">
+		<div class="page-header"">
+			<h1><?php echo $prob['title'];?></h1>
 		</div>
-		<div style='font-size: 20px;font-family: Courier, "Courier New", monospace'>
+		<div class="page-body lead">
 			<?php
 				echo $prob['body'];
 			?>
@@ -37,18 +39,18 @@ mysql_close();
 				{
 					$echoStr="";
 					$echoStr.=$alphabets[$count-1].".".$prob['item_'.$count];
-					if($prob['answer']==$count) $echoStr.="[答案]";
+					if($prob['answer']==$count) $echoStr='<div class=bg-success><strong>'.$echoStr.'[答案]</strong></div>';
 					?>
-				<div>
+				<ul class="form-control">
 					<?php echo $echoStr; ?>
-				</div>
+				</ul>
 			<?php
 				}
 				$rate=$prob['correctNum']/($prob['wrongNum']+$prob['correctNum']);
 			?>
 		</div>
-		<div>
-			<h3>试卷信息</h3>
+		<div class="alert alert-warning">
+			<h1>试题信息</h1>
 			<div>正确数:&nbsp;&nbsp;&nbsp;<?php echo$prob['correctNum'];?></div>
 			<div>错误数:&nbsp;&nbsp;&nbsp;<?php echo$prob['wrongNum'];?></div>
 			<div>正确率:&nbsp;&nbsp;&nbsp;<?php echo$prob['wrongNum'];?></div>
@@ -57,10 +59,12 @@ mysql_close();
 		$hrefAdd = $_SERVER['PHP_SELF'] . "/../addexam.php?addItem=true&id=" . $prob['PID'] . "&token=" . hash("md5", $prob['PID'] . $salt."add");
 		$hrefDel = $_SERVER['PHP_SELF'] . "/../addexam.php?delItem=true&id=" . $prob['PID'] . "&token=" . hash("md5", $prob['PID'] . $salt."del");
 		?>
-		<a href=<?php echo $hrefAdd;?>>添加此试题并返回</a>&nbsp;&nbsp;&nbsp;
-		<a href=<?php echo $hrefDel;?>>从试卷中移出此试题并返回</a>&nbsp;&nbsp;&nbsp;
-		<a href="./addexam.php">返回题目选择页面</a>
-	</div>
-	<?php require_once(dirname(__FILE__)."/../html/footer.php");?>
+<div class="btn-group">
+	<a class='btn btn-success' href=<?php echo $hrefAdd;?>>添加此试题并返回</a>&nbsp;&nbsp;&nbsp;
+	<a class='btn btn-info' href=<?php echo $hrefDel;?>>从试卷中移出此试题并返回</a>&nbsp;&nbsp;&nbsp;
+	<a class='btn btn-primary' href="./addexam.php">返回题目选择页面</a>
+</div>
+</div>
+<?php require_once(dirname(__FILE__)."/../html/footer.php");?>
 </body>
 </html>
