@@ -5,8 +5,10 @@
  * Date: 15-2-14
  * Time: 下午1:41
  */
+$pos="admin";
 require_once(dirname(__FILE__)."/../class/examclass.php");
 require_once(dirname(__FILE__)."/../class/pitemclass.php");
+require_once(dirname(__FILE__)."/../config.php");
 session_start();
 
 //Show current select problems
@@ -40,13 +42,13 @@ else if(isset($_POST) && $_POST['create']=="true")               //Create a Pape
 {
 	if(empty($_POST['examid']))
 	{
-		$msgStr = "<div style='background-color: red'>试卷名字不能为空!</div>";
+		$msgStr = "<div class='alert alert-danger'>试卷名字不能为空!</div>";
 	}
 	else
 	{
 		if (empty($_SESSION['selProb']))
 		{
-			$msgStr = "<div style='background-color: red'>你没有选择试题,请选择试题之后再次进行组卷</div>";
+			$msgStr = "<div class='alert alert-danger'>你没有选择试题,请选择试题之后再次进行组卷</div>";
 		}
 		else
 		{
@@ -57,7 +59,7 @@ else if(isset($_POST) && $_POST['create']=="true")               //Create a Pape
 			$resStr = mysql_fetch_array($resStr);
 			if ($resStr != false)
 			{
-				$msgStr = "<div style='background-color: red'>试卷ID重复,请重新输入</div>";
+				$msgStr = "<div class='alert alert-danger'>试卷ID重复,请重新输入</div>";
 			}
 			else
 			{
@@ -72,7 +74,7 @@ else if(isset($_POST) && $_POST['create']=="true")               //Create a Pape
 				}
 				$SQLQUERY = "INSERT INTO exams(EID,items) VALUE('" . $_POST['examid'] . "','" . $tmpStr . "')";
 				mysql_query($SQLQUERY);
-				$msgStr = "<div style='background-color: lightgreen'>试卷添加成功</div>";
+				$msgStr = "<div class='alert alert-success'>试卷添加成功</div>";
 				mysql_close($sqlconn);
 				unset($_SESSION['selProb']);
 			}
@@ -85,47 +87,51 @@ else if(isset($_POST) && $_POST['create']=="true")               //Create a Pape
 	<head lang="en">
 		<title>添加试卷</title>
 		<meta charset="utf-8"/>
+		<?php require_once(dirname(__FILE__)."/../html/header.php");?>
 	</head>
 	<body>
-	<div style="background-color: greenyellow">
-		<div style="background-color: hotpink">Warning: 测试版每套试卷仅支持50道题目的添加,请注意</div>
-		<div>已选择试题,点击试题删除已选择试题</div>
-		<div style='font-family:"Courier New", Courier, Monospace;font-size: 30px'>
-			<?php
-			$maxCol=8;                  //设置每行最多显示题目数量
-			$curCol=0;
-			if(!empty($_SESSION['selProb']))
-			{
-				foreach($_SESSION['selProb'] as $key=>$val)
-				{
-					$href = $_SERVER['PHP_SELF'] . "?delItem=true&id=" . $val . "&token=" . hash("md5", $val . $salt."del");
-					echo "<a style='text-decoration: none;'href=$href>$val</a>&nbsp;&nbsp;&nbsp;";                  //CSS Goes
-					$curCol++;
-					if ($curCol == $maxCol) echo "<br/>";
-				}
-			}
-			?>
-		</div>
-		<div>
+	<?php require_once(dirname(__FILE__)."/../html/navbar_top.php");?>
+	<div class="container">
+		<div class="alert alert-warning">Warning: 测试版每套试卷仅支持50道题目的添加,请注意</div>
+		<div class="well">
+			<p class="lead">已选择试题,点击试题删除已选择试题</p>
 			<div>
-				选好试题后 请为试卷命名
-				<form method="post" action=<?php echo$_SERVER['PHP_SELF']; ?>>
-					<input type="text" id="examid" name="examid"/>
-					<input type="submit" value="生成试卷"/>
-					<input type="hidden" id="create" name="create" value="true"/>
-				</form>
-				<?php echo $msgStr;?>
+				<?php
+				$maxCol=8;                  //设置每行最多显示题目数量
+				$curCol=0;
+				if(!empty($_SESSION['selProb']))
+				{
+					foreach($_SESSION['selProb'] as $key=>$val)
+					{
+						$href = $_SERVER['PHP_SELF'] . "?delItem=true&id=" . $val . "&token=" . hash("md5", $val . $salt."del");
+						echo "<a class='btn btn-primary' href=$href>$val</a>&nbsp;&nbsp;&nbsp;";                  //CSS Goes
+						$curCol++;
+						if ($curCol == $maxCol) echo "<br/>";
+					}
+				}
+				?>
 			</div>
 		</div>
+		<div class="form-group">
+			<div class="alert alert-info">选好试题后 请为试卷命名</div>
+			<form method="post" action=<?php echo$_SERVER['PHP_SELF']; ?>>
+				<div class="input-group">
+					<input  class="form-control" type="text" id="examid" name="examid"/>
+					<input class="btn btn-success" type="submit" value="生成试卷"/>
+					<input type="hidden" id="create" name="create" value="true"/>
+				</div>
+			</form>
+			<?php echo $msgStr;?>
+		</div>
 	</div>
-	<div style="background-color: lightblue;margin:auto; width:100%">
-		<div style="margin:auto; width:80%">
+	<div class="container">
+		<div class="well">
 			<div style="font-size: 30px;">全部试题</div>
-			<table border="1"  align="center" width="80%" height="80%">
+			<table class="table table-striped table-hover">
 				<tr>
-					<td width="25%">试题编号(点击可查看试题)</td>
-					<td>摘要内容</td>
-					<td>添加试题</td>
+					<th width="25%">试题编号(点击可查看试题)</th>
+					<th>摘要内容</th>
+					<th>添加试题</th>
 				</tr>
 				<?php
 				$sqlconn=mysql_connect($db_host.":".$db_port,$db_user,$db_password);
@@ -140,7 +146,7 @@ else if(isset($_POST) && $_POST['create']=="true")               //Create a Pape
 					$contentStr=mb_substr($tmpRes['body'],0,5,"utf-8")."...";                 //不可以直接使用substr 用mb_substr代替 这样在截取中文的时候才不会出现乱码
 					//$contentStr=$tmpRes['body'];
 					$hrefAdd = $_SERVER['PHP_SELF'] . "?addItem=true&id=" . $tmpRes['PID'] . "&token=" . hash("md5", $tmpRes['PID'] . $salt."add");
-					$echoStr="<tr><td align='center' style='font-size: 20px;'>".$hrefID."</td><td>$contentStr</td><td><a href=$hrefAdd>Add</a></td></tr>";
+					$echoStr="<tr><th align='center' style='font-size: 20px;'>".$hrefID."</th><td>$contentStr</td><td><a class='btn btn-default' href=$hrefAdd>Add</a></td></tr>";
 					echo $echoStr;
 				}
 				mysql_close($sqlconn);
@@ -148,6 +154,7 @@ else if(isset($_POST) && $_POST['create']=="true")               //Create a Pape
 			</table>
 		</div>
 	</div>
+
 	<?php require_once(dirname(__FILE__)."/../html/footer.php");?>
 	</body>
 	</html>

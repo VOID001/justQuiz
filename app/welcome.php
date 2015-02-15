@@ -20,26 +20,20 @@ $pos="home";
 
 
 <div class="container">
-	<div class="text-center">
-		<h1>justQuiz!测评考试系统</h1>
-		<table style="margin:auto;">
-			<th></th>
-			<tr><br/></tr>
-			<tr>
-				<td>
-					<a href="quiz.php">
-						<!--<div style="background-color:yellowgreen; width:300px;height:200px;">-->
-						<div class="btn btn-large btn-primary" >
-							<div style='margin:auto;font-family: Monaco, "Courier New", Courier, monospace ;font-size:40px;'>Take Quiz! 参加测试</div>
-						</div>
-					</a>
-				</td>
-			</tr>
-		</table>
+	<div class="page-header text-center">
+		<h1 class="title">justQuiz!测评考试系统</h1>
 	</div>
-</div>
-<div class="bottom">
-<!--	<a href="admin/index.php">Admin Access</a>-->
+	<div class="row" align="center">
+		<a href="quiz.php">
+			<!--<div style="background-color:yellowgreen; width:300px;height:200px;">-->
+			<div class="btn btn-large btn-primary" >
+				<div style='margin:auto;font-family: Monaco, "Courier New", Courier, monospace ;font-size:40px;'>Take Quiz! 参加测试</div>
+			</div>
+		</a>
+	</div>
+	<div class="bottom">
+		<!--	<a href="admin/index.php">Admin Access</a>-->
+	</div>
 </div>
 <?php require_once(dirname(__FILE__)."/html/footer.php");?>
 </body>
