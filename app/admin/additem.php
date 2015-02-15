@@ -24,3 +24,5 @@ if(isset($_POST['addItem']))
 }
 require_once(dirname(__FILE__)."/../html/additem_form.php");
 
+require_once(dirname(__FILE__)."/../html/footer.php");
+

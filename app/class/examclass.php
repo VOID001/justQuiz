@@ -43,30 +43,30 @@ class Examclass {
 	{
 		$currProb=$this->examProblemContainer[$seqID];
 		?>
-		<div class="pcontainer">
-			<div class="ptitle">
-				<?php print_r($currProb->ptitle);?>
+		<div class="well">
+			<div class="page-header">
+				<h1><?php print_r($currProb->ptitle);?></h1>
 			</div>
-			<div class="pbody">
-				<?php print_r($currProb->pbody); ?>
+			<div class="page-body">
+				<h4><?php print_r($currProb->pbody); ?></h4>
 			</div>
 			<div class="panszone">
-				<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+				<form role="form" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
 					<input type="hidden" name="seqNum" value="<?php echo $seqID;?>"/>
 					<?php
 					foreach($currProb->psel as $key=>$val)
 					{
-						$optStr="<div><input type='radio' name='usersel' value='".$key."'/>".chr(ord('A')+$key-1).".".$val."</div>";
+						$optStr="<div class='input-group'><span class='input-group-addon'><input class='radio-inline' type='radio' name='usersel' value='".$key."'/></span><span class='form-control'>".chr(ord('A')+$key-1).".".$val."</span></div>";
 						//chr 这一函数可以把ASCII转为字符 而 ord这一函数可以把字符转为ASCII
 						print_r($optStr);
 					}
 					?>
-					<input type="submit" value="下一题"/>
+					<input class= "bottom btn btn-primary" type=submit value="下一题"/>
 					<input type="hidden" name="answered" value="true"/>
 				</form>
 			</div>
 		</div>
-		<?php
+	<?php
 	}
 
 	public function useranswer($seqID,$userans)
@@ -87,20 +87,20 @@ class Examclass {
 		}
 		?>
 
-		<div>
+		<div class="well">
 			<h2>测试结果</h2>
-			<div>
-				正确题目数量:<?php print_r($correctNum); ?>
+			<div class="alert alert-success">
+				<strong>正确题目数量:</strong><?php print_r($correctNum); ?>
 			</div>
-			<div>
-				错误题目数量:<?php print_r($wrongNum); ?>
+			<div class="alert alert-danger">
+				<storng>错误题目数量:</storng><?php print_r($wrongNum); ?>
 			</div>
 			<div>
 				<a href="<?php echo $_SERVER['PHP_SELF'];?>">点击这里返回测试选择页面</a>
 				<a href="<?php echo dirname($_SERVER['PHP_SELF']);?>">点击这里返回主界面</a>
 			</div>
 		</div>
-		<?php
+	<?php
 	}
 
 	public function check_ans($seqID)

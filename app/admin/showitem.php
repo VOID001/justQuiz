@@ -61,5 +61,6 @@ mysql_close();
 		<a href=<?php echo $hrefDel;?>>从试卷中移出此试题并返回</a>&nbsp;&nbsp;&nbsp;
 		<a href="./addexam.php">返回题目选择页面</a>
 	</div>
+	<?php require_once(dirname(__FILE__)."/../html/footer.php");?>
 </body>
 </html>

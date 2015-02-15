@@ -1,4 +1,3 @@
-<meta charset="utf-8" />
 <?php
 /**
  * Created by PhpStorm.
@@ -8,6 +7,18 @@
  * File: quiz.php
  * Description:
  */
+$pos="quiz";
+require_once(dirname(__FILE__)."/config.php");
+?>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<head>
+		<title>JustQuiz! An app for quizzing and examing</title>
+		<?php require_once(dirname(__FILE__)."/html/header.php");?>
+	</head>
+<body>
+<?php require_once(dirname(__FILE__)."/html/navbar_top.php");?>
+
+<?php
 require_once(dirname(__FILE__)."/class/examclass.php");
 session_start();
 if($_SERVER['REQUEST_METHOD']=="GET")
@@ -17,6 +28,9 @@ if($_SERVER['REQUEST_METHOD']=="GET")
 }
 else
 {
+	?>
+<div class="container">
+	<?php
 	if(!empty($_SESSION['curExam']))               //User has already in exam
 	{
 		if(!empty($_POST['answered']))
@@ -56,7 +70,8 @@ else
 		}
 	}
 }
-//require_once("html/quiz_header.php");
-//require_once("html/quiz_body.php");
-//require_once("html/quiz_footer.php");
+?>
+</div>
+<?php
+require_once(dirname(__FILE__)."/html/footer.php");
 

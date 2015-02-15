@@ -148,6 +148,7 @@ else if(isset($_POST) && $_POST['create']=="true")               //Create a Pape
 			</table>
 		</div>
 	</div>
+	<?php require_once(dirname(__FILE__)."/../html/footer.php");?>
 	</body>
 	</html>
 
