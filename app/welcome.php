@@ -21,7 +21,8 @@ $pos="home";
 
 <div class="container-fluid jumbotron">
 	<div class="jumbotron text-center">
-		<h1 class="title">justQuiz!测评考试系统</h1>
+		<h1 class>justQuiz!</h1>
+		<h2 class="lead text-justify">justQuiz! 是一个分享型的竞答社区,你可以提交你的题目让他人作答,也可以去挑战其它人布下的难题哦,快点击下面的按钮先睹为快吧</h2>
 	</div>
 	<div class="row" align="center">
 		<a href="quiz.php">

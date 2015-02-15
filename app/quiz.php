@@ -21,15 +21,20 @@ require_once(dirname(__FILE__)."/config.php");
 <?php
 require_once(dirname(__FILE__)."/class/examclass.php");
 session_start();
-if($_SERVER['REQUEST_METHOD']=="GET")
+if($_SERVER['REQUEST_METHOD']=="GET" && empty($_SESSION['curExam']))
 {
 	//Show the Exam Selection Form
 	require_once(dirname(__FILE__) . '/html/quiz_form.html');            //Show find quiz dialog
 }
 else
 {
+if($_SERVER['REQUEST_METHOD']=="GET" && !empty($_SESSION['curExam']))
+{
+	$msgStr = '<div class="alert alert-warning">您上次作答的试卷没有答完</div>';
+}
 	?>
 <div class="container">
+<?php echo $msgStr;?>
 	<?php
 	if(!empty($_SESSION['curExam']))               //User has already in exam
 	{
@@ -65,8 +70,17 @@ else
 
 			$_SESSION['curExam']=new Examclass();
 			$_SESSION['curID']=0;
-			$_SESSION['curExam']->load_exam($_SESSION['examid']);
-			$_SESSION['curExam']->show_problem($_SESSION['curID']);
+			$ok=$_SESSION['curExam']->load_exam($_SESSION['examid']);
+			if($ok)
+			{
+				$_SESSION['curExam']->show_problem($_SESSION['curID']);
+			}
+			else
+			{
+				echo '<div class="alert alert-danger">找不到与试卷ID对应的试卷!</div>';
+				require_once(dirname(__FILE__) . '/html/quiz_form.html');            //Show find quiz dialog
+				unset($_SESSION['curExam']);
+			}
 		}
 	}
 }

@@ -24,6 +24,7 @@ class Examclass {
 		$SQLQUERY="SELECT * FROM exams WHERE EID='".$examid."'";
 		$resStr=mysql_query($SQLQUERY);
 		$tmpData=mysql_fetch_array($resStr);
+		if(is_bool($tmpData)) return false;
 		$probs=split(",",$tmpData['items']);                //Which function to use?
 		$icounter=0;
 		foreach($probs as $key=>$value)
@@ -36,6 +37,7 @@ class Examclass {
 		$this->examProblemNum=$icounter;
 		$this->examTitle=$tmpData['EID'];
 		shuffle($this->examProblemContainer);
+		return true;
 		//var_dump($this);
 	}
 
@@ -43,28 +45,28 @@ class Examclass {
 	{
 		$currProb=$this->examProblemContainer[$seqID];
 		?>
-		<div class="well">
+		<div class="row well">
 			<div class="page-header">
 				<h1><?php print_r($currProb->ptitle);?></h1>
 			</div>
 			<div class="page-body">
 				<h4><?php print_r($currProb->pbody); ?></h4>
 			</div>
-			<div class="panszone">
-				<form role="form" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+				<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
 					<input type="hidden" name="seqNum" value="<?php echo $seqID;?>"/>
+					<div class="list-group">
 					<?php
 					foreach($currProb->psel as $key=>$val)
 					{
-						$optStr="<div class='input-group'><span class='input-group-addon'><input class='radio-inline' type='radio' name='usersel' value='".$key."'/></span><span class='form-control'>".chr(ord('A')+$key-1).".".$val."</span></div>";
+						$optStr="<div class='list-group-item'><input class='radio-inline' type='radio' name='usersel' value='".$key."'/>".chr(ord('A')+$key-1).".".$val."</div>";
 						//chr 这一函数可以把ASCII转为字符 而 ord这一函数可以把字符转为ASCII
 						print_r($optStr);
 					}
 					?>
+					</div>
 					<input class= "bottom btn btn-primary" type=submit value="下一题"/>
 					<input type="hidden" name="answered" value="true"/>
 				</form>
-			</div>
 		</div>
 	<?php
 	}
