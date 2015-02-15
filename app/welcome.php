@@ -27,8 +27,8 @@ $pos="home";
 	<div class="row" align="center">
 		<a href="quiz.php">
 			<!--<div style="background-color:yellowgreen; width:300px;height:200px;">-->
-			<div class="btn btn-large btn-primary" >
-				<div style='margin:auto;font-family: Monaco, "Courier New", Courier, monospace ;font-size:40px;'>Take Quiz! 参加测试</div>
+			<div class="btn btn-primary" >
+				<div style='font-size:40px;'>Take Quiz! 参加测试</div>
 			</div>
 		</a>
 	</div>

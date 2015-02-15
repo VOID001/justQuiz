@@ -9,20 +9,20 @@
  */
 if(!isset($_GET['action']) || $_GET['action']!="install")
 {
-	require_once(dirname(__FILE__)."/../html/setup_ui.html");
-	require_once(dirname(__FILE__)."/../html/setup_btn.html");
+	require_once(dirname(__FILE__)."/../html/setup_ui.php");
+	require_once(dirname(__FILE__)."/../html/setup_btn.php");
 	exit();
 }
 else
 {
-	require_once(dirname(__FILE__)."/../html/setup_ui.html");
-	echo "<h3>安装中，请稍后...</h3>";
+	require_once(dirname(__FILE__)."/../html/setup_ui.php");
+	echo "<div class='alert alert-info'><h3>安装中，请稍后...</h3></div>";
 	require_once(dirname(__FILE__)."/../config.php");
 	//sqlConnection
 	$sqlconn=mysql_connect($db_host.":".$db_port,$db_user,$db_password);
-	if(!mysql_error()) echo"<h4>数据服务器连接完成</h4>";
+	if(!mysql_error()) echo"<div class='alert alert-success'><h4>数据服务器连接完成</h4></div>";
 	mysql_select_db($db_name);
-	if(!mysql_error()) echo"<h4>数据库连接完成</h4>";
+	if(!mysql_error()) echo"<div class='alert alert-success'><h4>数据库连接完成</h4></div>";
 	//Start to Create Tables
 	$SQLQUERY="CREATE TABLE testitems(PID INTEGER ,title MEDIUMTEXT,body MEDIUMTEXT,
 		attachment MEDIUMTEXT,isObjective BOOL,isMulti BOOL,choiceNum INTEGER,
@@ -32,13 +32,13 @@ else
 	mysql_query($SQLQUERY);               //暂时不执行
 	if(!mysql_error())
 	{
-		echo"<h4>试题库testitems建立完成!</h4>";
+		echo"<div class='alert alert-success'><h4>试题库testitems建立完成!</h4></div>";
 		$ok=true;
 	}
 	else
 	{
-		echo"<h4><i>试题库testitems建立失败!</i></h4>";
-		echo "<br/>".mysql_error();
+		echo"<div class='alert alert-danger'><h4><i>试题库testitems建立失败!</i></h4>";
+		echo "<br/><strong>".mysql_error().'</strong></div>';
 		$ok=false;
 	}
 	$SQLQUERY="CREATE TABLE exams(EID VARCHAR(32) ,items MEDIUMTEXT,rankAnum MEDIUMINT,
@@ -46,13 +46,13 @@ else
 	mysql_query($SQLQUERY);               //暂时不执行
 	if(!mysql_error())
 	{
-		echo"<h4>试卷库exams建立完成!</h4>";
+		echo"<div class='alert alert-success'><h4>试卷库exams建立完成!</h4></div>";
 		$ok=true;
 	}
 	else
 	{
-		echo"<h4><i>试卷库exams建立失败!</i></h4>";
-		echo "<br/>".mysql_error();
+		echo"<div class='alert alert-danger'><h4><i>试卷库exams建立失败!</i></h4>";
+		echo "<br/><strong>".mysql_error().'</strong></div>';
 		$ok=false;
 	}
 
@@ -75,7 +75,7 @@ else
 				$data = hash("md5", time() . $seed);
 				echo $data;
 				file_put_contents($confFile, $data);
-				require_once(dirname(__FILE__)."/../html/setup_finish.html");
+				require_once(dirname(__FILE__)."/../html/setup_finish.php");
 			}
 		}
 	}
