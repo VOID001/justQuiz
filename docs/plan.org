@@ -26,8 +26,10 @@
 - TimingInfo 暂时不明确如何存储时限信息，也许用xml STEP1不考虑
    
 *** WORKING 管理界面的添加
-**** TODO 管理登录界面
-**** WORKING 管理主界面
+**** DONE 管理登录界面
+     CLOSED: [2015-02-16 一 00:11]
+**** DONE 管理主界面
+     CLOSED: [2015-02-16 一 00:11]
 *** DONE Func1-添加题目到题库
     CLOSED: [2015-02-07 六 19:59]
 
@@ -64,15 +66,16 @@ examclass类内存有用户的答案和一个PItemclass类数组,并且具有判
 判断用户是否为GET到此页面(即第一次访问此页面) 是的话输出选择试卷表单
 否则 判断用户是否已经获得试卷,是的话 输出下一题 否的话 判断用户是否填写了
 选择试卷表单的信息 是则获得试卷,否则输出选择试卷表单
-**** TODO [by zero] 程序细节改进
+**** WORKING [by zero] 程序细节改进
 1. 添加上一题按钮
 2. 添加当前试题/所有试题题号显示功能
 3. 用户查找试卷ID失败进行警告
-*** TODO Func4-判题功能
+*** DONE Func4-判题功能
+    CLOSED: [2015-02-16 一 00:12]
 * TODO STEP2 支持题目上传附件
 * TODO STEP3 支持用户注册，登录
 * TODO STEP4 支持显示该套卷的分数分布
 * TODO STEP5 人工批改功能的添加
 * TODO STEP6 加入不同的答题模式
-* TODO STEP7 UI优化 jQuery Bootstrap优化UI
+* TESTING STEP7 UI优化 jQuery Bootstrap优化UI
 * TODO STEP... 其它功能的添加
