@@ -1,3 +1,4 @@
 # Created by .gitignore support plugin (hsz.mobi)
 .idea/
 load_conf
+auto_update.sh
