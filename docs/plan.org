@@ -72,7 +72,11 @@ examclass类内存有用户的答案和一个PItemclass类数组,并且具有判
 3. 用户查找试卷ID失败进行警告
 *** DONE Func4-判题功能
     CLOSED: [2015-02-16 一 00:12]
-* TODO STEP2 支持题目上传附件
+* TESTING STEP2 支持题目上传附件
+** TESTING 添加题目上传表单的附件上传功能
+** TESTING 添加上传文件验证功能
+** TESTING 将文件名加密并存储于数据库内
+** TESTING 支持测试中显示附件
 * TODO STEP3 支持用户注册，登录
 * TODO STEP4 支持显示该套卷的分数分布
 * TODO STEP5 人工批改功能的添加
