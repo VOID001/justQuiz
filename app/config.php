@@ -60,7 +60,7 @@ define('FILE_UPLOAD_DIR','jstorage/');
  */
 $developer="VOID001";
 
-//error_reporting(0);                             //调试时注释掉本句
+error_reporting(0);                             //调试时注释掉本句
 
 /**
  *以下请不要修改
