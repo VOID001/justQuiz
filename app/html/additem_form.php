@@ -12,9 +12,9 @@ require_once(dirname(__FILE__)."/../config.php");
 </head>
 <body>
 <?php require_once(dirname(__FILE__)."/../html/navbar_top.php");?>
-	<div class="container well">
+	<div class="container col-md-8 col-md-offset-2 well">
 		<?php echo $msgStr;?>
-		<form class="form-group" action="<?php echo $_SERVER['PHP_SELF']?>" method="post">
+		<form class="form-group" enctype="multipart/form-data" action="<?php echo $_SERVER['PHP_SELF']?>" method="post">
 			<table class="table">
 				<th colspan="2">
 						<h1>添加题目</h1>
@@ -40,13 +40,17 @@ require_once(dirname(__FILE__)."/../config.php");
 					</td>
 				</tr>
 				<?php
-					$choiceArr=array("A","B","C","D","E");
+					$choiceArr=array("A","B","C","D","E","F","G","H","I","J","K","L","M","N");
 					for($icounter=1;$icounter<=4;$icounter++)
 					{
 						$optionStr="<tr><th>选项".$choiceArr[$icounter-1]."</th><td><input class='form-control' placeholder='在此输入选项内容' type='text' name='p_sel_".$icounter."' style='width:400px'/></td></tr>";
 						echo $optionStr;
 					}
 				?>
+				<tr class="">
+					<th>点击此处添加附件</th>
+					<td><label><input type="file" name="p_file" id="p_file"/><p class="help-block">(仅支持图片格式和音频格式以及文档格式 大小不超过1MB)</p></label></td>
+				</tr>
 				<tr>
 					<th>
 							答案
@@ -71,7 +75,7 @@ require_once(dirname(__FILE__)."/../config.php");
 					</td>
 				</tr>
 			</table>
-			<input type="hidden" name="addItem" value="<?php $data="VOID001"; echo hash("md5",$data.time());?>"/>
+			<input type="hidden" name="addItem" value="<?php echo hash("md5",$salt.time());?>"/>
 		</form>
 	</div>
 <?php require_once(dirname(__FILE__)."/../html/header.php");?>

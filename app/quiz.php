@@ -9,6 +9,8 @@
  */
 $pos="quiz";
 require_once(dirname(__FILE__)."/config.php");
+require_once(dirname(__FILE__)."/class/examclass.php");
+session_start();
 ?>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<head>
@@ -19,8 +21,6 @@ require_once(dirname(__FILE__)."/config.php");
 <?php require_once(dirname(__FILE__)."/html/navbar_top.php");?>
 
 <?php
-require_once(dirname(__FILE__)."/class/examclass.php");
-session_start();
 if($_SERVER['REQUEST_METHOD']=="GET" && empty($_SESSION['curExam']))
 {
 	//Show the Exam Selection Form

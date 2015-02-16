@@ -51,11 +51,16 @@ $salt="justQuizSaltToken";
 $jquery_version="1.11.2";                       //JQuery的版本
 
 /**
+ * 文件上传目录
+ */
+define('FILE_UPLOAD_DIR','jstorage/');
+
+/**
  * 开发者信息
  */
 $developer="VOID001";
 
-error_reporting(0);                             //调试时注释掉本句
+//error_reporting(0);                             //调试时注释掉本句
 
 /**
  *以下请不要修改

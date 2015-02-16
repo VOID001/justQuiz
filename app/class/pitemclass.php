@@ -11,7 +11,7 @@
 require_once(dirname(__FILE__)."/../config.php");
 class PItemclass
 {
-	public $pid,$ptitle,$pbody,$psel,$pans;
+	public $pid,$ptitle,$pbody,$psel,$pans,$pfile;
 	public $pIsObjective,$pIsMulti;
 	private $initflag=false;
 
@@ -19,6 +19,7 @@ class PItemclass
 	{
 		$this->ptitle=$MY_POST['p_title'];
 		$this->pbody=$MY_POST['p_body'];
+		$this->pfile=$MY_POST['p_file'];
 		for($icounter=1;$icounter<=4;$icounter++)
 		{
 			$tmpStr=$MY_POST["p_sel_$icounter"];
@@ -51,6 +52,7 @@ class PItemclass
 		$this->pbody=$tmpData['body'];
 		$this->pIsObjective=$tmpData['isObjective'];
 		$this->pans=$tmpData['answer'];
+		$this->pfile=$tmpData['attachment'];
 		for($icounter=1;$icounter<=$tmpData['choiceNum'];$icounter++)
 		{
 			$this->psel[$icounter]=$tmpData["item_$icounter"];
@@ -76,7 +78,7 @@ class PItemclass
 			$queryRes=mysql_query($SQLQUERY);
 			$this->pid=mysql_num_rows($queryRes)+1;
 			$SQLQUERY="INSERT INTO testitems(PID, title, body, attachment, isObjective, isMulti, choiceNum, item_1, item_2, item_3, item_4, item_5, item_6, item_7, answer, correctNum, wrongNum)
-VALUES('$this->pid','$this->ptitle','$this->pbody','','1','0','4','".$this->psel[1]."','".$this->psel[2]."','".$this->psel[3]."','".$this->psel[4]."',NULL,NULL,NULL,'$this->pans','0','0')";
+VALUES('$this->pid','$this->ptitle','$this->pbody','$this->pfile','1','0','4','".$this->psel[1]."','".$this->psel[2]."','".$this->psel[3]."','".$this->psel[4]."',NULL,NULL,NULL,'$this->pans','0','0')";
 			mysql_query($SQLQUERY);
 			if(mysql_error())
 			{

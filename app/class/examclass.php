@@ -43,19 +43,49 @@ class Examclass {
 
 	public function show_problem($seqID)
 	{
+		global $ABSPATH;
 		$currProb=$this->examProblemContainer[$seqID];
 		?>
-		<div class="row well">
-			<div class="page-header">
+		<div class="container well">
+			<div class="row-fluid  page-header">
 				<h1><?php print_r($currProb->ptitle);?></h1>
 			</div>
-			<div class="page-body">
+			<div class="row-fluid page-body">
 				<h4><?php print_r($currProb->pbody); ?></h4>
 			</div>
+			<div class="row">
+			<?php
+			if(!empty($currProb->pfile))
+			{
+				$suffix=explode(".",$currProb->pfile);
+				$suffix=$suffix[count($suffix)-1];
+				$imgType=array("jpg","jpeg","png","gif","bmp");
+				$isImg=false;
+				foreach($imgType as $key=>$val)
+				{
+					if($suffix==$val)
+					{
+						?>
+						<img class=" col-md-4 img-responsive img-thumbnail" src="<?php echo $ABSPATH."/".FILE_UPLOAD_DIR.$currProb->pfile;?>"/>
+						<?php
+						$isImg=true;
+						break;
+					}
+				}
+				if(!$isImg)
+				{
+					?>
+					<a class=" col-md-4" href="<?php echo $ABSPATH."/".FILE_UPLOAD_DIR.$currProb->pfile;?>">点此下载附件</a>
+				<?php
+				}
+			}
+			?>
+			</div>
+			<div class="row text-justify">
 				<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
 					<input type="hidden" name="seqNum" value="<?php echo $seqID;?>"/>
 					<div class="list-group">
-					<?php
+						<?php
 					foreach($currProb->psel as $key=>$val)
 					{
 						$optStr="<div class='list-group-item'><input class='radio-inline' type='radio' name='usersel' value='".$key."'/>".chr(ord('A')+$key-1).".".$val."</div>";
@@ -67,6 +97,7 @@ class Examclass {
 					<input class= "bottom btn btn-primary" type=submit value="下一题"/>
 					<input type="hidden" name="answered" value="true"/>
 				</form>
+				</div>
 		</div>
 	<?php
 	}
