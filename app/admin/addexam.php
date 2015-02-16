@@ -85,8 +85,8 @@ else if(isset($_POST) && $_POST['create']=="true")               //Create a Pape
 ?>
 	<html>
 	<head lang="en">
-		<title>添加试卷</title>
 		<?php require_once(dirname(__FILE__)."/../html/header.php");?>
+		<title>添加试卷</title>
 	</head>
 	<body>
 	<?php require_once(dirname(__FILE__)."/../html/navbar_top.php");?>

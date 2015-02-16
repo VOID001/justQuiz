@@ -1,6 +1,3 @@
-<head>
-	<meta charset="utf-8"/>
-</head>
 <?php
 /**
  * Created by PhpStorm.

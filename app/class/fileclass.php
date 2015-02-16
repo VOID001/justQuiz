@@ -51,7 +51,7 @@ class Fileclass {
 		$encStr=$this->encrypt();
 		$encStr.=$suffix;
 		move_uploaded_file($this->currFile['tmp_name'],$this->dir.$encStr);
-		var_dump($this->dir.$encStr);
+		//var_dump($this->dir.$encStr);
 		return $encStr;
 	}
 

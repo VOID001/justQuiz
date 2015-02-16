@@ -14,7 +14,7 @@ $SQLQUERY="SELECT * FROM testitems WHERE PID='".$_GET['id']."'";
 $resStr=mysql_query($SQLQUERY);
 $prob=mysql_fetch_array($resStr);
 mysql_close();
-var_dump($prob);
+//var_dump($prob);
 ?>
 <html>
 <head>

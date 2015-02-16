@@ -17,13 +17,13 @@ if(isset($_POST['addItem']))
 {
 	//if(check_post()) exit();
 	$prob=new PItemclass();
-	var_dump($_FILES);
+	//var_dump($_FILES);
 	$uploadFile=new Fileclass();
 	if($uploadFile->load($_FILES['p_file']) && $uploadFile->verify())
 	{
 		$_POST['p_file']=$uploadFile->upload();
 	}
-	var_dump($_POST);
+	//var_dump($_POST);
 	$prob->fetch_from_post($_POST);
 	if($prob->save_to_db())
 	{
